@@ -9,15 +9,10 @@ const {
 /**
  * 
  * @param {number} id 用户id
- * @param {boolean} useProxy 使用代理
  * @returns {Object} 获取的用户数据 {name, color, ccfLevel, passed, hideInfo}
  */
-async function fetchStats(id, useProxy) {
-  //debug 测试请求
-  let reqUrl = `https://www.luogu.com.cn/user/${id}?_contentOnly`;
-  if (useProxy) {
-    reqUrl = `https://a-1c37c2-1300876583.ap-shanghai.service.tcloudbase.com/luogu?id=${id}`;
-  }
+async function fetchStats(id) {
+  const reqUrl = `https://www.luogu.com.cn/user/${id}?_contentOnly=1`;
   const res = await axios.get(reqUrl);
 
   const stats = {
@@ -66,7 +61,7 @@ const renderSVG = (stats, options) => {
   } = options || {};
 
   if(hideInfo) {
-    return renderError("用户开启了“完全隐私保护”，获取数据失败");
+    return renderError("用户开启了「完全隐私保护」，获取数据失败");
   }
   
   const paddingX = 25;

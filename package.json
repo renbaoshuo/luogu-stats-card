@@ -3,6 +3,7 @@
   "version": "1.0.1",
   "description": "洛谷数据渲染组件",
   "main": "index.js",
+  "private": true,
   "scripts": {},
   "keywords": [],
   "author": "wao",

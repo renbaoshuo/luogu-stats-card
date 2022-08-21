@@ -3,18 +3,14 @@ const { renderError } = require("../src/common.js")
 
 module.exports = async (req, res) => {
   const { 
-    id, 
-    hide_title, 
+    id,
+    hide_title,
     dark_mode,
     card_width = 500,
   } = req.query;
 
   res.setHeader("Content-Type", "image/svg+xml");
-  // res.setHeader("Cache-Control", "public, max-age=43200"); // 43200s（12h） cache
-  
-  return res.send(
-    renderError(`访问 https://luogu.wao3.cn 更换域名，造成不便敬请谅解`, { darkMode: dark_mode })
-  );
+  res.setHeader("Cache-Control", "public, max-age=43200"); // 43200s（12h） cache
 
   const validId = /^[1-9]\d*$/;
   const clamp = (min, max, n) => Math.max(min, Math.min(max, n));
@@ -26,7 +22,7 @@ module.exports = async (req, res) => {
     return res.send(renderError(`卡片宽度"${card_width}"不合法`, {darkMode: dark_mode}));
   }
 
-  const stats = await fetchStats(id, true);
+  const stats = await fetchStats(id);
   return res.send(renderSVG(stats, {
     hideTitle: hide_title,
     darkMode: dark_mode,
