@@ -6,5 +6,9 @@
     { "src": "/practice", "dest": "/api/practice.js" },
     { "src": "/guzhi", "dest": "/api/guzhi.js" }
   ],
-  "regions": ["kix1"]
+  "regions": ["kix1"],
+  "github":{
+    "silent": true,
+    "autoJobCancelation": true
+  }
 }
